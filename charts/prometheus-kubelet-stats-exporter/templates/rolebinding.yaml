@@ -1,0 +1,17 @@
+apiVersion: {{ template "rbac.apiVersion" . }}
+kind: ClusterRoleBinding
+metadata:
+  labels:
+    app.kubernetes.io/name: {{ include "prometheus-kubelet-stats-exporter.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    helm.sh/chart: {{ include "prometheus-kubelet-stats-exporter.chart" . }}
+  name: {{ template "prometheus-kubelet-stats-exporter.fullname" . }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ template "prometheus-kubelet-stats-exporter.fullname" . }}
+subjects:
+  - kind: ServiceAccount
+    name: {{ template "prometheus-kubelet-stats-exporter.serviceAccountName" . }}
+    namespace: {{ $.Release.Namespace }}

@@ -1,0 +1,14 @@
+apiVersion: v1
+appVersion: 0.0.1
+description: Prometheus Kubelet Stats Exporter
+home: https://github.com/petros-d/kubelet-stats-exporter
+keywords:
+- prometheus
+- kubelet
+- monitoring
+maintainers:
+- name: sequra
+name: prometheus-kubelet-stats-exporter
+sources:
+- https://github.com/petros-d/kubelet-stats-exporter
+version: 0.0.1

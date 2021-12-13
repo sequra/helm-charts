@@ -1,0 +1,26 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ template "prometheus-kubelet-stats-exporter.fullname" . }}
+  {{- if .Values.service.annotations }}
+  annotations:
+{{ toYaml .Values.service.annotations | indent 4 }}
+{{- end }}
+  labels:
+    app.kubernetes.io/name: {{ include "prometheus-kubelet-stats-exporter.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    helm.sh/chart: {{ include "prometheus-kubelet-stats-exporter.chart" . }}
+{{- if .Values.service.labels }}
+{{ toYaml .Values.service.labels | indent 4 }}
+{{- end }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - name: http
+      port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+  selector:
+    app.kubernetes.io/name: {{ include "prometheus-kubelet-stats-exporter.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}

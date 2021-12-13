@@ -1,0 +1,87 @@
+restartPolicy: Always
+
+podDisruptionBudget: {}
+  # maxUnavailable: 0
+
+## kubelet-stats-exporter container environment variables
+##
+## extraEnv:
+##   JSON_LOGGER: "true"
+##   EXPORTER_PORT: 9115
+##   SCRAPE_TIMEOUT: 10
+##   LOG_LEVEL: "INFO"
+extraEnv: {}
+
+strategy:
+  rollingUpdate:
+    maxSurge: 1
+    maxUnavailable: 0
+  type: RollingUpdate
+
+image:
+  repository: repository/kubelet-stats-exporter
+  tag: 0.0.1
+  pullPolicy: IfNotPresent
+
+  ## Optionally specify an array of imagePullSecrets.
+  ## Secrets must be manually created in the namespace.
+  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+  ##
+  # pullSecrets:
+  #   - myRegistrKeySecretName
+
+livenessProbe:
+  httpGet:
+    path: /health
+    port: http
+
+readinessProbe:
+  httpGet:
+    path: /health
+    port: http
+
+nodeSelector: {}
+tolerations: []
+affinity: {}
+
+resources: {}
+  # limits:
+  #   cpu: 100m
+  #   memory: 100Mi
+  # requests:
+  #   cpu: 50m
+  #   memory: 50Mi
+
+priorityClassName: ""
+
+service:
+  annotations: {}
+  labels: {}
+  type: ClusterIP
+  port: 9115
+
+# Only changes container port. Application port can be changed with extraEnv (EXPORTER_PORT: 9115)
+containerPort: 9115
+
+serviceAccount:
+  create: true
+  # The name of the ServiceAccount to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name:
+  annotations: {}
+
+podAnnotations: {}
+
+pod:
+  labels: {}
+
+replicas: 1
+
+serviceMonitor:
+  ## If true, a ServiceMonitor CRD is created for a prometheus operator
+  ## https://github.com/coreos/prometheus-operator
+  enabled: false
+  additionalMetricsRelabels: {}
+  labels: {}
+  interval: 30s
+  scrapeTimeout: 30s

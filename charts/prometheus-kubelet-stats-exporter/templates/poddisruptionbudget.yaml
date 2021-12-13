@@ -1,0 +1,19 @@
+{{- if .Values.podDisruptionBudget -}}
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ template "prometheus-kubelet-stats-exporter.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "prometheus-kubelet-stats-exporter.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    helm.sh/chart: {{ include "prometheus-kubelet-stats-exporter.chart" . }}
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "prometheus-kubelet-stats-exporter.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+      app.kubernetes.io/managed-by: {{ .Release.Service }}
+      helm.sh/chart: {{ include "prometheus-kubelet-stats-exporter.chart" . }}
+{{ toYaml .Values.podDisruptionBudget | indent 2 }}
+{{- end }}
