@@ -5,6 +5,7 @@ home: https://github.com/petros-d/kubelet-stats-exporter
 keywords:
 - prometheus
 - kubelet
+- stats
 - monitoring
 maintainers:
 - name: sequra
