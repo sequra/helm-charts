@@ -3,6 +3,25 @@ entries:
   prometheus-kubelet-stats-exporter:
   - apiVersion: v1
     appVersion: 0.0.1
+    created: "2022-02-17T13:42:57.34234053Z"
+    description: Prometheus Kubelet Stats Exporter
+    digest: b02262ad28559dbc7e20134531cc9c95c9f475c01de280c5295c44b73c83f6ea
+    home: https://github.com/petros-d/kubelet-stats-exporter
+    keywords:
+    - prometheus
+    - kubelet
+    - stats
+    - monitoring
+    maintainers:
+    - name: sequra
+    name: prometheus-kubelet-stats-exporter
+    sources:
+    - https://github.com/petros-d/kubelet-stats-exporter
+    urls:
+    - https://github.com/sequra/helm-charts/releases/download/prometheus-kubelet-stats-exporter-0.0.2/prometheus-kubelet-stats-exporter-0.0.2.tgz
+    version: 0.0.2
+  - apiVersion: v1
+    appVersion: 0.0.1
     created: "2021-12-13T20:13:57.814413547Z"
     description: Prometheus Kubelet Stats Exporter
     digest: a881b8838a2f705cba00ab86be1b6f43655a44bacd627c16cccbb4e1294421ec
