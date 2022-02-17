@@ -1,8 +1,5 @@
 restartPolicy: Always
 
-podDisruptionBudget: {}
-  # maxUnavailable: 0
-
 ## kubelet-stats-exporter container environment variables
 ##
 ## extraEnv:
