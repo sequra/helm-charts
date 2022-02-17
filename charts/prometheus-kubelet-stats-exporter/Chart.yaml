@@ -12,4 +12,4 @@ maintainers:
 name: prometheus-kubelet-stats-exporter
 sources:
 - https://github.com/petros-d/kubelet-stats-exporter
-version: 0.0.1
+version: 0.0.2
