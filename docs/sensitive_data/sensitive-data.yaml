@@ -1,0 +1,3 @@
+# Check the docs/sensitive_data/README.md file for more information
+service: helm-charts # Name of the service for the sensitive data
+sources:
